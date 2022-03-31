@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+	"release": "release-it"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -16,6 +17,7 @@
     "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^4.2.2",
     "@vue/cli-plugin-babel": "~4.5.13",
     "@vue/cli-plugin-e2e-cypress": "~4.5.13",
     "@vue/cli-plugin-eslint": "~4.5.13",
@@ -30,6 +32,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^2.2.1",
+    "release-it": "^14.13.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
