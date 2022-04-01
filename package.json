@@ -1,6 +1,6 @@
 {
-  "name": "vue2-starter-js",
-  "version": "0.1.0",
+  "name": "swapi-wiki",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,9 +8,11 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-	"release": "release-it"
+    "release": "release-it"
   },
   "dependencies": {
+    "axios": "^0.26.1",
+    "buefy": "^0.9.19",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

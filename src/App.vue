@@ -7,26 +7,21 @@
     <router-view />
   </div>
 </template>
-
+<script>
+import { mapGetters } from "vuex";
+import store from "@/store";
+import { FETCH_STARSHIPS } from "@/store/starships/actions.type";
+export default {
+  name: "App",
+  mounted() {
+    store.dispatch(FETCH_STARSHIPS);
+    console.log(this.starships);
+  },
+  computed: {
+    ...mapGetters(["starships"]),
+  },
+};
+</script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+@import "scss/main";
 </style>
