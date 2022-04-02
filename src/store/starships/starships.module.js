@@ -1,15 +1,17 @@
 import API_URL from "@/commons/config";
 import StarShipModel from "@/models/starship.model";
 import StarshipService from "@/services/starship.service";
-import { FETCH_STARSHIPS } from "./actions.type";
+import { FETCH_STARSHIPS, FETCH_STARSHIP_ONE } from "./actions.type";
 import {
   SET_STARSHIPS,
   SET_STARSHIPS_COUNT,
   SET_STARSHIPS_ROW,
   SET_STARSHIPS_OFFSET,
+  SET_STARSHIP_ONE,
 } from "./mutations.type";
 const initialState = {
   starships: [],
+  currentStarship: {},
   counts: 0,
   offset: 10,
   row: 1,
@@ -32,13 +34,18 @@ export const actions = {
       };
     }
     const { data } = await starShipService.getAllStarShip(config);
-    console.log("DATA", data);
+    context.commit(SET_STARSHIPS_ROW, currentPage);
     context.commit(
       SET_STARSHIPS,
       data.results.map((item) => new StarShipModel(item))
     );
     context.commit(SET_STARSHIPS_COUNT, data.count);
-    console.log("STATE", state);
+    return data;
+  },
+  async [FETCH_STARSHIP_ONE](context, starshipId) {
+    const { data } = await starShipService.getStarShipById(starshipId);
+    context.commit(SET_STARSHIP_ONE, new StarShipModel(data));
+    console.log(data);
     return data;
   },
 };
@@ -56,6 +63,9 @@ export const mutations = {
   [SET_STARSHIPS_OFFSET](state, offset) {
     state.offset = offset;
   },
+  [SET_STARSHIP_ONE](state, starship) {
+    state.currentStarship = starship;
+  },
 };
 
 const getters = {
@@ -70,6 +80,9 @@ const getters = {
   },
   row(state) {
     return state.row;
+  },
+  starship(state) {
+    return state.currentStarship;
   },
 };
 

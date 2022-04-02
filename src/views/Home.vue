@@ -67,10 +67,6 @@ export default {
   font-size: 1.4rem;
   font-weight: bold;
 }
-.border-dashed {
-  border: 1px dashed black;
-  background-color: transparent;
-}
 .nav-item {
   height: 250px;
   background-color: variables.$primary-color;

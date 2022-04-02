@@ -1,3 +1,8 @@
 .is-fullheight {
   height: calc(100vh - 50px);
 }
+
+.border-dashed {
+  border: 1px dashed black;
+  background-color: transparent;
+}

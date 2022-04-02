@@ -22,12 +22,6 @@ export default {
       type: String,
       required: true,
     },
-    methods: {
-      parseUrlForRouter(id) {
-        //qs.stringify
-        return encodeURIComponent(`${this.slug}/${id}`);
-      },
-    },
   },
 };
 </script>

@@ -12,7 +12,7 @@ class StarshipService extends ApiService {
   }
 
   getStarShipById(id) {
-    return this.methods.getOne(id);
+    return this.methods.getOne({ id });
   }
 }
 

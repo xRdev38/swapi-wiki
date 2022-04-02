@@ -33,23 +33,12 @@ export default {
     },
   },
   computed: {
-    startPage() {
-      console.log("CURRENT", this.currentPage);
-      if (this.currentPage === 1) {
-        return 1;
-      }
-      if (this.currentPage === this.totalPages) {
-        return 1;
-      }
-      return this.currentPage - 1;
-    },
     endPage() {
       return this.totalPages;
     },
     pages() {
       const range = [];
-
-      for (let i = this.startPage; i <= this.endPage; i += 1) {
+      for (let i = 1; i <= this.endPage; i += 1) {
         range.push({
           name: i,
           isDisabled: i === this.currentPage,

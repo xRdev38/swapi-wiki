@@ -1,15 +1,17 @@
 <template>
-  <div class="listing-starships">
-    <list-item :items="getStarShipsName" :slug="path"></list-item>
-    <pagination
-      class="c-pagination"
-      :total-pages="getPageTotal"
-      :total="counts"
-      :per-page="offset"
-      :current-page="currentPage"
-      @pageChanged="onPageChange"
-    >
-    </pagination>
+  <div class="wrapper">
+    <div class="listing-starships" v-if="!isLoading">
+      <list-item :items="getStarShipsName" :slug="path"></list-item>
+      <pagination
+        class="c-pagination"
+        :total-pages="getPageTotal"
+        :total="counts"
+        :per-page="offset"
+        :current-page="currentPage"
+        @pageChanged="onPageChange"
+      >
+      </pagination>
+    </div>
     <b-loading
       :is-full-page="true"
       v-model="isLoading"
@@ -21,7 +23,6 @@
 import ListItem from "@/components/ListItem";
 import Pagination from "@/components/Pagination";
 import store from "@/store";
-import { SET_STARSHIPS_ROW } from "@/store/starships/mutations.type";
 import { mapGetters } from "vuex";
 import { FETCH_STARSHIPS } from "@/store/starships/actions.type";
 
@@ -34,12 +35,14 @@ export default {
   data() {
     return {
       currentPage: 1,
-      isLoading: false,
+      isLoading: true,
       path: "starships",
     };
   },
-  mounted() {
-    store.dispatch(FETCH_STARSHIPS, this.currentPage);
+  created() {
+    store.dispatch(FETCH_STARSHIPS, this.currentPage).then(() => {
+      this.isLoading = false;
+    });
   },
   computed: {
     ...mapGetters(["starships", "offset", "row", "counts"]),
@@ -59,22 +62,25 @@ export default {
     onPageChange(page) {
       this.currentPage = page;
       this.isLoading = true;
-      store.commit({
-        type: SET_STARSHIPS_ROW,
-        row: this.currentPage,
-      });
       store.dispatch(FETCH_STARSHIPS, this.currentPage).then(() => {
         this.isLoading = false;
       });
     },
     getIdFromUrl(url) {
-      return url.substring(url.length - 2, url.lastIndexOf("/"));
+      return url.substring(
+        url.lastIndexOf(`${this.path}/`) + 10,
+        url.lastIndexOf("/")
+      );
     },
   },
 };
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 @use "../scss/base/variables" as variables;
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
 .listing-starships {
   width: 100%;
   height: 100%;
@@ -84,7 +90,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.c-pagination {
-  margin: 2.5rem;
+.pagination.c-pagination {
+  margin: 2.5rem 0;
 }
 </style>
