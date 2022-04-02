@@ -1,5 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import "variables";
 
-body {
-  color: $color;
+html {
+  box-sizing: border-box;
+  font-size: 100%;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $body-font-family;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: $text-color;
+  background-color: $bg-color;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  outline: none;
+  padding: 0;
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: none;
+  outline: #000 dotted 2px;
+  outline-offset: .05em;
+}
+
+a[href^="http"]:empty::before {
+  content: attr(href);
+}
+
+a[href]:not([class]) {
+  color: #008000;
+  text-decoration: underline;
+}
+
+img {
+  display: block;
+  font-family: sans-serif;
+  font-weight: 300;
+  height: auto;
+  line-height: 2;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+img::before {
+  content: "We're sorry, the image below is broken :(";
+  display: block;
+  margin-bottom: 10px;
+}
+
+img::after {
+  content: "(url: " attr(src) ")";
+  display: block;
+  font-size: 12px;
+}
+
+br + br {
+  display: none;
+}
+
