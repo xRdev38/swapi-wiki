@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import ListStarShips from "@/components/ListStarShips";
+import StarShip from "@/components/StarShip";
 
 Vue.use(VueRouter);
 
@@ -37,6 +39,18 @@ const routes = [
   {
     path: "/starships",
     name: "Starships",
+    children: [
+      {
+        path: "",
+        name: "Starships.list",
+        component: ListStarShips,
+      },
+      {
+        path: ":id",
+        name: "Starships.detail",
+        component: StarShip,
+      },
+    ],
     component: () =>
       import(/* webpackChunkName: "species" */ "../views/StarShips.vue"),
   },
