@@ -1,13 +1,13 @@
 <template>
-  <div class="home">Home</div>
+  <div class="planets">Planets</div>
 </template>
 <script>
 export default {
-  name: "Home",
+  name: "Planets",
 };
 </script>
 <style lang="scss">
-.home {
+.planets {
   text-align: center;
 }
 </style>

@@ -8,7 +8,6 @@ class ApiService {
   constructor({ url }) {
     this.url = url;
     this.endpoints = {};
-    console.log("BASE", url);
   }
 
   createEntity(entity) {
