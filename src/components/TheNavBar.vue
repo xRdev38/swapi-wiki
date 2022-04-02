@@ -112,7 +112,7 @@ export default {
 }
 .nav-title {
   font-family: variables.$header-font-family;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 700;
 }
 </style>
