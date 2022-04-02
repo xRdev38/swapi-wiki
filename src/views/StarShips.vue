@@ -1,23 +1,24 @@
 <template>
-  <div class="starships">Starships</div>
+  <div class="starships">
+    <router-view></router-view>
+  </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
-import store from "@/store";
-import { FETCH_STARSHIPS } from "@/store/starships/actions.type";
 export default {
   name: "Starships",
-  mounted() {
-    store.dispatch(FETCH_STARSHIPS);
-    console.log(this.starships);
-  },
-  computed: {
-    ...mapGetters(["starships"]),
+  data() {
+    return {
+      currentPage: 1,
+    };
   },
 };
 </script>
 <style lang="scss">
 .starships {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 </style>

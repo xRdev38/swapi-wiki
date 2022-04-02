@@ -7,8 +7,8 @@ class StarshipService extends ApiService {
     this.methods = this.createBasicCRUDEndpoints({ name: endpoints });
   }
 
-  getAllStarShip() {
-    return this.methods.getAll();
+  getAllStarShip(config = {}) {
+    return this.methods.getAll(config);
   }
 
   getStarShipById(id) {
