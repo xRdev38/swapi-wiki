@@ -1,7 +1,9 @@
 <template>
-  <div id="app" class="container is-fullhd">
+  <div id="app">
     <the-nav-bar></the-nav-bar>
-    <router-view />
+    <main class="container is-fullhd is-fullheight">
+      <router-view />
+    </main>
   </div>
 </template>
 <script>
