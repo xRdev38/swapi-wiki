@@ -68,14 +68,14 @@ export default {
     },
     getIdFromUrl(url) {
       return url.substring(
-        url.lastIndexOf(`${this.path}/`) + 10,
+        url.lastIndexOf(`${this.path}`) + (this.path.length + 1),
         url.lastIndexOf("/")
       );
     },
   },
 };
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 @use "../scss/base/variables" as variables;
 .wrapper {
   width: 100%;
