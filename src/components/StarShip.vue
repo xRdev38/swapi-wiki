@@ -75,7 +75,7 @@ export default {
       this.isLoading = false;
       if (error.code === 404) {
         setTimeout(() => {
-          this.$router.push({ name: "Starships" });
+          this.$router.push({ path: "/starships" });
         }, 5000);
       }
     });
