@@ -1,45 +1,41 @@
 import moment from "moment";
 import Base from "./base";
-class StarShip extends Base.Model {
+class Vehicle extends Base.Model {
   constructor({
     name,
     model,
-    starship_class,
+    vehicle_class,
     manufacturer,
-    cost_in_credits,
     length,
+    cost_in_credits,
     crew,
     passengers,
     max_atmosphering_speed,
-    hyperdrive_rating,
-    MGLT,
     cargo_capacity,
     consumables,
+    films,
+    pilots,
     url,
     created,
     edited,
-    films,
-    pilots,
   }) {
     super({
       name,
       model,
-      starship_class,
+      vehicle_class,
       manufacturer,
-      cost_in_credits,
       length,
+      cost_in_credits,
       crew,
       passengers,
       max_atmosphering_speed,
-      hyperdrive_rating,
-      MGLT,
       cargo_capacity,
       consumables,
+      films,
+      pilots,
       url,
       created,
       edited,
-      films,
-      pilots,
     });
   }
 
@@ -47,15 +43,13 @@ class StarShip extends Base.Model {
     return {
       name: "",
       model: "",
-      starship_class: "",
+      vehicle_class: "",
       manufacturer: "",
-      cost_in_credits: "",
       length: "",
+      cost_in_credits: "",
       crew: "",
       passengers: "",
       max_atmosphering_speed: "",
-      hyperdrive_rating: "",
-      MGLT: "",
       cargo_capacity: "",
       consumables: "",
       films: [],
@@ -81,17 +75,17 @@ class StarShip extends Base.Model {
   }
 }
 
-class StarShipList extends Base.List {
+class VehicleList extends Base.List {
   constructor(items = []) {
     super(items);
   }
 
   get model() {
-    return StarShip;
+    return Vehicle;
   }
 
-  findByTitle(val) {
-    return this.models.find((item) => item.title === val);
+  findByName(val) {
+    return this.models.find((item) => item.name === val);
   }
 
   filterByPosition(val) {
@@ -99,4 +93,4 @@ class StarShipList extends Base.List {
   }
 }
 
-export default { StarShip, StarShipList };
+export default { Vehicle, VehicleList };
