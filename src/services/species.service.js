@@ -1,0 +1,19 @@
+import ApiService from "@/services/api.service";
+
+class SpeciesService extends ApiService {
+  constructor({ url, endpoints }) {
+    super({ url });
+    this.createEntity({ name: endpoints });
+    this.methods = this.createBasicCRUDEndpoints({ name: endpoints });
+  }
+
+  getAllSpecies(config = {}) {
+    return this.methods.getAll(config);
+  }
+
+  getSpeciesById(id) {
+    return this.methods.getOne({ id });
+  }
+}
+
+export default SpeciesService;
