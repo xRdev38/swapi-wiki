@@ -8,11 +8,25 @@
 </template>
 <script>
 import TheNavBar from "@/components/TheNavBar";
+import { bus } from "@/commons/eventBus";
 
 export default {
   name: "App",
   components: {
     TheNavBar,
+  },
+  created() {
+    bus.$on("error", (error) => {
+      if (error.code === 404) {
+        this.$buefy.notification.open({
+          message: `Error this data was not found !`,
+          duration: 5000,
+          progressBar: true,
+          type: "is-danger",
+          pauseOnHover: true,
+        });
+      }
+    });
   },
 };
 </script>

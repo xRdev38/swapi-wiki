@@ -33,12 +33,9 @@ export default {
     },
   },
   computed: {
-    endPage() {
-      return this.totalPages;
-    },
     pages() {
       const range = [];
-      for (let i = 1; i <= this.endPage; i += 1) {
+      for (let i = 1; i <= this.totalPages; i += 1) {
         range.push({
           name: i,
           isDisabled: i === this.currentPage,
@@ -48,20 +45,8 @@ export default {
     },
   },
   methods: {
-    onClickFirstPage() {
-      this.$emit("pageChanged", 1);
-    },
-    onClickPreviousPage() {
-      this.$emit("pageChanged", this.currentPage - 1);
-    },
     onClickPage(page) {
       this.$emit("pageChanged", page);
-    },
-    onClickNextPage() {
-      this.$emit("pageChanged", this.currentPage + 1);
-    },
-    onClickLastPage() {
-      this.$emit("pageChanged", this.totalPages);
     },
     isPageActive(page) {
       return this.currentPage === page;

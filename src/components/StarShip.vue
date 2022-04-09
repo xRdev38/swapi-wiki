@@ -16,8 +16,12 @@
                   <p v-if="key !== 'created' && key !== 'edited'">
                     <strong>{{ firstLetter(removeDash(key)) }}</strong>
                     <br />
-                    <template v-if="key === 'films'">
-                      <div class="content" v-html="arrayToLinks(value)"></div>
+                    <template v-if="key === 'films' || key === 'pilots'">
+                      <linked-list
+                        :items="value"
+                        :path="getPath(key)"
+                        :currentUrl="currentUrl"
+                      ></linked-list>
                     </template>
                     <template v-else>
                       {{ value }}
@@ -43,23 +47,37 @@
   </div>
 </template>
 <script>
+import { bus } from "@/commons/eventBus";
 import store from "@/store";
 import { FETCH_STARSHIP_ONE } from "@/store/starships/actions.type";
 import { mapGetters } from "vuex";
 import Helpers from "@/commons/helpers";
+
+import LinkedList from "@/components/LinkedList";
 export default {
   name: "StarShip",
+  components: {
+    LinkedList,
+  },
   data() {
     return {
       starshipId: "",
       isLoading: true,
-      currentUrl: location.protocol + location.host,
+      currentUrl: location.protocol + "//" + location.host,
     };
   },
   created() {
     this.starshipId = this.$route.params.id;
     store.dispatch(FETCH_STARSHIP_ONE, this.starshipId).then(() => {
       this.isLoading = false;
+    });
+    bus.$on("error", (error) => {
+      this.isLoading = false;
+      if (error.code === 404) {
+        setTimeout(() => {
+          this.$router.push({ path: "/starships" });
+        }, 5000);
+      }
     });
   },
   computed: {
@@ -72,22 +90,14 @@ export default {
     removeDash(str) {
       return Helpers.removeDash(str);
     },
-    arrayToLinks(data) {
-      let html = `<ul>`;
-      if (Array.isArray(data)) {
-        data.forEach((item) => {
-          let id = item.substring(item.length - 2, item.lastIndexOf("/"));
-          html += `<li><a href="${this.currentUrl}/films/${id}"></a></li>`;
-        });
-        html += `</ul>`;
-      }
-      return html;
-    },
     hasDisplayKey(str) {
       return str !== "name" && str !== "url";
     },
     hasDisplayValue(data) {
       return !!data && data?.length > 0;
+    },
+    getPath(key) {
+      return key === "films" ? "films" : "people";
     },
     formatDate(str) {
       return Helpers.formatDate(str);
@@ -118,6 +128,7 @@ export default {
   border-top: 1px solid variables.$primary-color;
 }
 .content ul {
+  margin-left: 0 !important;
   list-style-type: none;
   & li {
     list-style: none;
