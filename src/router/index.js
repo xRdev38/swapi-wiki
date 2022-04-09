@@ -38,7 +38,6 @@ const routes = [
   },
   {
     path: "/starships",
-    name: "Starships",
     children: [
       {
         path: "",

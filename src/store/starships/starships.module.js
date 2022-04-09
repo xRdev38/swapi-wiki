@@ -45,7 +45,6 @@ export const actions = {
   async [FETCH_STARSHIP_ONE](context, starshipId) {
     const { data } = await starShipService.getStarShipById(starshipId);
     context.commit(SET_STARSHIP_ONE, new StarShipModel(data));
-    console.log(data);
     return data;
   },
 };
