@@ -1,4 +1,6 @@
-class StarShipModel {
+import moment from "moment";
+import Base from "./base";
+class StarShip extends Base.Model {
   constructor({
     name,
     model,
@@ -19,25 +21,82 @@ class StarShipModel {
     films,
     pilots,
   }) {
-    this.name = name;
-    this.model = model;
-    this.starship_class = starship_class;
-    this.manufacturer = manufacturer;
-    this.cost_in_credits = cost_in_credits;
-    this.length = length;
-    this.crew = crew;
-    this.passengers = passengers;
-    this.max_atmosphering_speed = max_atmosphering_speed;
-    this.hyperdrive_rating = hyperdrive_rating;
-    this.MGLT = MGLT;
-    this.cargo_capacity = cargo_capacity;
-    this.consumables = consumables;
-    this.url = url;
-    this.created = created;
-    this.edited = edited;
-    this.films = films;
-    this.pilots = pilots;
+    super({
+      name,
+      model,
+      starship_class,
+      manufacturer,
+      cost_in_credits,
+      length,
+      crew,
+      passengers,
+      max_atmosphering_speed,
+      hyperdrive_rating,
+      MGLT,
+      cargo_capacity,
+      consumables,
+      url,
+      created,
+      edited,
+      films,
+      pilots,
+    });
+  }
+
+  get defaults() {
+    return {
+      name: "",
+      model: "",
+      starship_class: "",
+      manufacturer: "",
+      cost_in_credits: "",
+      length: "",
+      crew: "",
+      passengers: "",
+      max_atmosphering_speed: "",
+      hyperdrive_rating: "",
+      MGLT: "",
+      cargo_capacity: "",
+      consumables: "",
+      films: [],
+      pilots: [],
+      url: "",
+      created: "--",
+      edited: "--",
+    };
+  }
+
+  get formattedCreated() {
+    if (!this.created) {
+      return "--";
+    }
+    return moment(this.created).format("MMMM DD, YYYY");
+  }
+
+  get formattedEdited() {
+    if (!this.edited) {
+      return "--";
+    }
+    return moment(this.edited).format("MMMM DD, YYYY");
   }
 }
 
-export default StarShipModel;
+class StarShipList extends Base.List {
+  constructor(items = []) {
+    super(items);
+  }
+
+  get model() {
+    return StarShip;
+  }
+
+  findByTitle(val) {
+    return this.models.find((item) => item.title === val);
+  }
+
+  filterByPosition(val) {
+    return this.models.filter((item) => item.position === val);
+  }
+}
+
+export default { StarShip, StarShipList };

@@ -1,5 +1,5 @@
 import API_URL from "@/commons/config";
-import StarShipModel from "@/models/starship.model";
+import Model from "@/models/starship.model";
 import StarshipService from "@/services/starship.service";
 import { FETCH_STARSHIPS, FETCH_STARSHIP_ONE } from "./actions.type";
 import {
@@ -35,16 +35,13 @@ export const actions = {
     }
     const { data } = await starShipService.getAllStarShip(config);
     context.commit(SET_STARSHIPS_ROW, currentPage);
-    context.commit(
-      SET_STARSHIPS,
-      data.results.map((item) => new StarShipModel(item))
-    );
+    context.commit(SET_STARSHIPS, new Model.StarShipList(data.results));
     context.commit(SET_STARSHIPS_COUNT, data.count);
     return data;
   },
   async [FETCH_STARSHIP_ONE](context, starshipId) {
     const { data } = await starShipService.getStarShipById(starshipId);
-    context.commit(SET_STARSHIP_ONE, new StarShipModel(data));
+    context.commit(SET_STARSHIP_ONE, new Model.StarShip(data));
     return data;
   },
 };
