@@ -4,6 +4,8 @@
 
 This is a single-page app using VueJs and Star Wars API. It's powered by Vue-cli, Bulma Css and Lodash.
 
+![](./public/swapi-wiki.png)
+
 ## Table of contents
 
 - [Overview](#overview)
