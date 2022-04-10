@@ -6,7 +6,21 @@ on:
     branches:
       - 'main'
 jobs:
-  build-and-test:
+  unit-test:
+    working_directory: ~/swapi-wiki
+    docker:
+      - image: circleci/node:12-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: swapi-wiki-{{ .Branch }}-{{ checksum "yarn.lock"}}
+      - run: yarn install
+      - save_cache:
+          key: swapi-wiki-{{ .Branch }}-{{ checksum "yarn.lock"}}
+          paths:
+            - "nodes_modules"
+      - run: yarn run test:unit
+  build-and-deploy:
     working_directory: ~/swapi-wiki
     docker:
       - image: circleci/node:12-browsers
@@ -24,6 +38,7 @@ jobs:
           command: |
             ./node_modules/.bin/surge --project ~/swapi-wiki/dist/ --domain swapi-wiki-dev.surge.sh
 workflows:
-  build-and-test:
+  build-and-deploy:
     jobs:
-      - build-and-test
+      - unit-test
+      - build-and-deploy
