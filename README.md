@@ -2,12 +2,13 @@
 <div align="center">
 [![License](https://img.shields.io/github/license/xRdev38/swapi-wiki)](https://github.com/xRdev38/swapi-wiki/blob/master/LICENSE.md)  [![CircleCI](https://circleci.com/gh/xRdev38/swapi-wiki.svg?style=shield)](https://circleci.com/gh/xRdev38/swapi-wiki)
 </div>
+
 This is a single-page app using VueJs and Star Wars API. It's powered by Vue-cli, Bulma Css and Lodash.
 
 ## Table of contents
 
 - [Overview](#overview)
-    - [Project setup](#project setup)
+    - [Project setup](#project-setup)
     - [The challenge](#the-challenge)
     - [Screenshot](#screenshot)
     - [Links](#links)
