@@ -1,7 +1,6 @@
 # Swapi Wiki 🚀
-<div align="center">
-[![License](https://img.shields.io/github/license/xRdev38/swapi-wiki)](https://github.com/xRdev38/swapi-wiki/blob/master/LICENSE.md)  [![CircleCI](https://circleci.com/gh/xRdev38/swapi-wiki.svg?style=shield)](https://circleci.com/gh/xRdev38/swapi-wiki)
-</div>
+
+[![CircleCI](https://circleci.com/gh/xRdev38/swapi-wiki.svg?style=shield)](https://circleci.com/gh/xRdev38/swapi-wiki) [![GitHub license](https://img.shields.io/github/license/xRdev38/swapi-wiki)](https://github.com/xRdev38/swapi-wiki/blob/main/LICENSE.md)
 
 This is a single-page app using VueJs and Star Wars API. It's powered by Vue-cli, Bulma Css and Lodash.
 
